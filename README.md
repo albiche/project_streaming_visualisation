@@ -2,99 +2,113 @@
 
 ## Description
 
-Ce projet a pour objectif de transformer des données brutes provenant de fichiers Last.fm en tables relationnelles prêtes à être analysées avec Power BI. Vous pouvez ajouter de nouvelles données au fil du temps et mettre à jour automatiquement les visualisations dans Power BI.
+This project is designed to process raw listening data from Last.fm and transform it into structured relational tables for analysis in Power BI. The script automates the data pipeline by loading CSV files, cleaning and filtering the data, and generating three key relational tables: **users.csv**, **musics.csv**, and **listens.csv**. These tables are then used in Power BI to create interactive dashboards for analyzing music listening habits and trends. 
+
+The Python script follows a clear structure:
+- **Load Files**: Reads all CSV files from the input directory while skipping empty files.
+- **Process Data**: Cleans and filters the data, ensuring proper date formatting and building relationships between users, music tracks, and listening activity.
+- **Export Data**: Saves the relational tables in the output directory, ready for use in Power BI.
+
+The Power BI dashboard uses these tables to create visualizations such as the most listened-to tracks and albums (both all-time and weekly), a cross-tabulation of listening activity by listener and artist, and rankings of the top 10 listeners. This combination of Python and Power BI enables seamless and scalable insights from the raw data.
 
 ---
 
-## Fonctionnalités
+## Features
 
-- Transformation des fichiers CSV bruts en trois tables relationnelles :
-  - **users.csv** : Informations sur les utilisateurs.
-  - **musics.csv** : Informations uniques sur les musiques écoutées.
-  - **listens.csv** : Détails des écoutes (horodatage et lien entre utilisateur et musique).
-- Tableau de bord Power BI pour visualiser les données :
-  - Les musiques les plus écoutées.
-  - Activité des utilisateurs.
-  - Analyses temporelles des écoutes.
+- Transformation of raw CSV files into three relational tables:
+  - **users.csv**: Contains unique user information.
+  - **musics.csv**: Contains unique information about music tracks.
+  - **listens.csv**: Details the listening activity, including timestamps and relationships between users and tracks.
+- Power BI dashboard for analyzing music listening habits:
+  - **Most Listened Track (All-Time)**: Displays the most popular track across all data.
+  - **Most Listened Track (Weekly)**: Highlights the most listened-to track for each week.
+  - **Most Listened Album (All-Time)**: Identifies the most popular album across the entire dataset.
+  - **Most Listened Album (Weekly)**: Highlights the most popular album for each week.
+  - **Cross Tabulation**: Shows the number of tracks listened to by each listener for each artist.
+  - **Top 10 Listeners (All-Time)**: Ranks the 10 users with the most listens.
+  - **Top 10 Listeners (Weekly)**: Ranks the 10 users with the most listens for each week.
+
+This project automates the process of data cleaning, structuring, and visualization, making it easy to derive insights and track trends in music listening behavior over time.
 
 ---
 
-## Structure des Dossiers
+## Folder Structure
 
 ```plaintext
 Project_streaming_visualisation/
 ├── data/
-│   └──  raw/
-│       └── Lastfm/               # Contient les fichiers CSV bruts
+│   └── raw/
+│       └── Lastfm/               # Contains raw CSV files
 ├── scripts/
-│   └── process_data.py           # Script Python pour transformer les données
-├── output/                       # Contient les tables relationelles 
+│   └── process_data.py           # Python script for data transformation
+├── output/                       # Contains the relational tables
 ├── power_bi/
-│   └── Dashboard.pbix      # Tableau de bord Power BI
-├── README.md                     # Documentation principale
-└── requirements.txt              # Dépendances Python nécessaires
+│   └── Dashboard.pbix      # Power BI dashboard
+├── README.md                     # Main documentation
+└── requirements.txt              # Required Python dependencies
 ```
----
-
-## Prérequis
-
-1. **Python** : Version 3.8 ou supérieure.
-2. **Power BI Desktop** : Téléchargez et installez depuis [le site officiel](https://powerbi.microsoft.com/desktop/).
 
 ---
 
-## Guide d'Installation et d'Utilisation
+## Prerequisites
 
-### Étape 1 : Cloner le dépôt
+1. **Python**: Version 3.8 or higher.
+2. **Power BI Desktop**: Download and install from [the official website](https://powerbi.microsoft.com/desktop/).
 
-Téléchargez le projet sur votre machine locale :
+---
+
+## Installation and Usage Guide
+
+### Step 1: Clone the repository
+
+Download the project to your local machine:
 
 ```bash
 git clone https://github.com/albiche/Project_streaming_visualisation.git
 cd Project_streaming_visualisation
 ```
 
-### Étape 2 : Ajouter les données
-Placez vos fichiers CSV bruts dans le dossier suivant :
+### Step 2: Add your data
+Place your raw CSV files in the following folder:
 
-```bash
+```plaintext
 data/raw/Lastfm/
 ```
 
-### Étape 3 : Exécuter le script Python
-Lancez le script pour transformer les données brutes en tables relationnelles :
+### Step 3: Run the Python script
+Run the script to transform raw data into relational tables:
 
 ```bash
 python scripts/process_data.py
 ```
 
-Les fichiers générés (users.csv, musics.csv, listens.csv) seront créés dans le dossier output/.
+The generated files (users.csv, musics.csv, listens.csv) will be created in the `output/` folder.
 
-### Étape 4 : Mettre à jour Power BI
-#### 1. Ouvrir le fichier Power BI
-Lancez Power BI Desktop.
-Ouvrez le fichier power_bi/LastfmDashboard.pbix
+### Step 4: Update Power BI
+#### 1. Open the Power BI file
+Launch Power BI Desktop.  
+Open the file `power_bi/LastfmDashboard.pbix`.
 
-#### 2. Configurer les sources de données
+#### 2. Configure data sources
 
-Accédez à Transformer les données (ruban supérieur).
+Go to Transform Data (top ribbon).  
 
-Vérifiez que les fichiers suivants pointent vers le dossier output/ :
+Ensure the following files point to the `output/` folder:
 
-```bash
+```plaintext
 users.csv
 musics.csv
 listens.csv
 ```
-Si le chemin est incorrect :
+If the path is incorrect:  
 
-Cliquez sur Source dans les étapes à droite.
-Modifiez le chemin pour pointer vers le fichier dans output/.
+Click on Source in the steps on the right.  
+Edit the path to point to the file in `output/`.  
 
-#### 3. Mettre à jour les relations
-Vérifiez les relations entre les tables :
-users.User_ID → listens.User_ID
-musics.Music_ID → listens.Music_ID
+#### 3. Update table relationships
+Verify the relationships between tables:  
+users.User_ID → listens.User_ID  
+musics.Music_ID → listens.Music_ID  
 
-#### 4. Actualiser les données
-Cliquez sur Actualiser (ruban supérieur) pour charger les nouvelles données.
+#### 4. Refresh the data
+Click on Refresh (top ribbon) to load the new data.
