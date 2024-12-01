@@ -32,6 +32,51 @@ This project automates the process of data cleaning, structuring, and visualizat
 
 ---
 
+## Technical Implementation
+This project employs a robust and modular approach to process raw listening data into structured relational tables. Below is a technical breakdown of the steps:
+
+### Data Loading:
+
+The script begins by scanning the data/raw/Lastfm/ folder for CSV files. Any empty or corrupt files are skipped to ensure smooth processing.
+Pandas is used to load the data into DataFrames for further manipulation.
+
+### Data Cleaning:
+
+Each DataFrame undergoes cleaning operations to remove duplicates, fill missing values, and ensure proper formatting.
+Dates are standardized into a consistent format (YYYY-MM-DD) to enable accurate weekly and all-time aggregations.
+
+### Data Transformation:
+
+The script assigns unique identifiers (User_ID, Music_ID, etc.) for relational consistency.
+Relationships between users, music tracks, and listening activity are built using foreign keys, aligning with database normalization principles.
+Weekly timestamps are derived by extracting the year and week number from the raw listening dates, creating a Week column for weekly insights.
+
+### Relational Table Generation:
+
+users.csv: Contains unique user identifiers along with metadata such as username or demographic information if available.
+musics.csv: Contains unique tracks, including their album, artist, and genre metadata.
+listens.csv: Logs each listening activity, linking users and tracks with timestamps and weekly identifiers.
+
+### Data Export:
+
+The processed DataFrames are exported as CSV files to the output/ folder, ready for ingestion into Power BI.
+
+### Power BI Integration:
+
+The relational tables are imported into Power BI, where relationships are verified and visualizations are built.
+Aggregations such as "Most Listened Track All-Time" and "Top 10 Listeners Weekly" are calculated directly in Power BI using DAX formulas.
+
+## Use of AI Assistance
+
+To ensure the efficiency and scalability of the project, we used ChatGPT to:
+
+Review and refine our code for clarity and optimization.
+Suggest best practices for data pipeline structuring.
+Provide insights on creating intuitive Power BI visualizations and managing relational data models.
+By leveraging AI, we significantly reduced development time, identified potential issues early, and ensured that the codebase followed industry standards for readability and maintainability.
+
+This blend of human expertise and AI assistance allowed us to create a robust, scalable, and user-friendly solution for streaming data analysis.
+
 ## Folder Structure
 
 ```plaintext
