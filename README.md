@@ -1,4 +1,4 @@
-# Lastfm-Project
+# Project_streaming_visualisation
 
 ## Description
 
@@ -22,7 +22,7 @@ Ce projet a pour objectif de transformer des données brutes provenant de fichie
 ## Structure des Dossiers
 
 ```plaintext
-Lastfm-Project/
+Project_streaming_visualisation/
 ├── data/
 │   └──  raw/
 │       └── Lastfm/               # Contient les fichiers CSV bruts
@@ -50,8 +50,8 @@ Lastfm-Project/
 Téléchargez le projet sur votre machine locale :
 
 ```bash
-git clone https://github.com/votre_utilisateur/Lastfm-Project.git
-cd Lastfm-Project
+git clone https://github.com/albiche/Project_streaming_visualisation.git
+cd Project_streaming_visualisation
 ```
 
 ### Étape 2 : Ajouter les données
