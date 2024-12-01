@@ -24,14 +24,13 @@ Ce projet a pour objectif de transformer des données brutes provenant de fichie
 ```plaintext
 Lastfm-Project/
 ├── data/
-│   ├── raw/
-│   │   └── Lastfm/               # Contient les fichiers CSV bruts
-│   └── README.md                 # Documentation sur le format attendu des fichiers
+│   └──  raw/
+│       └── Lastfm/               # Contient les fichiers CSV bruts
 ├── scripts/
 │   └── process_data.py           # Script Python pour transformer les données
-├── output/
+├── output/                       # Contient les tables relationelles 
 ├── power_bi/
-│   └── LastfmDashboard.pbix      # Tableau de bord Power BI
+│   └── Dashboard.pbix      # Tableau de bord Power BI
 ├── README.md                     # Documentation principale
 └── requirements.txt              # Dépendances Python nécessaires
 ```
