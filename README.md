@@ -1,4 +1,5 @@
 # Project_streaming_visualisation
+This project was developed by Jean-Alexis Taddeï, Alban Danet, Jules Tonnette, and Yann Caillé Zeutsop Tankoua.
 
 ## Description
 
